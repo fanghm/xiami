@@ -90,7 +90,6 @@ var obj = {
         });
     },
 
-
     /**
      * 获取粉丝数和评论数
      * @param
@@ -131,7 +130,6 @@ var obj = {
         return callback(obj);
     },
 
-
     /**
      * 获取最受欢迎歌曲列表
      * @param
@@ -165,7 +163,7 @@ var obj = {
      * @param
      * @returns 包含列表数组
      */
-    getSimilarArtist: function (uid) {
+    getSimilarArtist: function (uid, callback) {
         var urlSimilarArtist = 'http://www.xiami.com/artist/similar/id/' + uid;
 //    req.get(urlSimilarArtist).pipe(fs.createWriteStream('xiamiXiangSI.html'));
         req.get(urlSimilarArtist, function (e, r, b) {
@@ -187,7 +185,7 @@ var obj = {
 //            console.log("a.text()", a);
 //            console.log("arr", arr);
 //        console.log(b);
-            return arr;
+            return callback(arr);
 
         })
     },
@@ -197,14 +195,14 @@ var obj = {
      * @param
      * @returns 包含基本信息的对象
      */
-    getBasicInfo: function (id) {
+    getBasicInfo: function (id, callback) {
         var urlBasicInfo = 'http://www.xiami.com/artist/profile/id/' + id;
 //    req.get(urlBasicInfo).pipe(fs.createWriteStream('xiamiDangan.html'));
         req.get(urlBasicInfo, function (e, r, b) {
             $ = cheerio.load(b);
             var desc = $('.profile').text();
 //        console.log("desc", desc);
-            return desc;
+            return callback(desc);
         })
     },
 
@@ -253,7 +251,7 @@ var obj = {
      */
     getAlbum: function (uid, page, callback) {
         var page = page || 1;
-        var urlGetAlbum = 'http://www.xiami.com/artist/album/' + uid + '/d//p//page/' + page;
+        var urlGetAlbum = 'http://www.xiami.com/artist/album/id/' + uid + '/d//p//page/' + page;
         console.log("urlGetAlbum", urlGetAlbum);
 //    req.get(urlGetAlbum).pipe(fs.createWriteStream('xiamiAlbum.html'));
         req.get(urlGetAlbum, function (e, r, b) {
@@ -314,30 +312,30 @@ var obj = {
     getPic: function (id, page, callback) {
         //    var urlGetPic = 'http://www.xiami.com/artist/pic/arid/6845';
         var page = page || 1;
-        console.log("id", id);
-        console.log("page", page);
+//        console.log("id", id);
+//        console.log("page", page);
         var urlGetPic = 'http://www.xiami.com/artist/pic/arid/' + id + '/page/' + page;
 //    req.get(urlGetPic).pipe(fs.createWriteStream('xiamiPic2.html'));
-        console.log("page", page);
-        console.log("urlGetPic", urlGetPic);
+//        console.log("page", page);
+//        console.log("urlGetPic", urlGetPic);
         req.get(urlGetPic, function (e, r, b) {
-            console.log("b", b);
+//            console.log("b", b);
             $ = cheerio.load(b);
             var p = $('li', '.photo_list');
-            console.log("p", p);
+//            console.log("p", p);
             var arr = [];
             p.each(function (i, elem) {
                 var bigPircHref = $('a', $('.cover', this)).attr('href');
                 var src = $('img', this).attr('src');
-            console.log("src", src);
-            console.log("bigPircHref", bigPircHref);
+//            console.log("src", src);
+//            console.log("bigPircHref", bigPircHref);
                 var obj = {
                     bigPircHref: bigPircHref,
                     src: src
                 };
                 arr.push(obj);
             });
-            console.log("arr", arr);
+//            console.log("arr", arr);
 //        console.log("p", p);
             return callback(arr);
         });
@@ -348,15 +346,15 @@ var obj = {
      * @param
      * @returns 包含大图的src
      */
-    getBigPic: function () {
-        var urlGetBigPic = 'http://www.xiami.com/artist/pic-detail/pid/8405';
+    getBigPic: function (id, callback) {
+        var urlGetBigPic = 'http://www.xiami.com/artist/pic-detail/pid/' + id;
 
 //    req.get(urlGetBigPic).pipe(fs.createWriteStream('xiamiBigPic.html'));
         req.get(urlGetBigPic, function (e, r, b) {
             $ = cheerio.load(b);
             var img = $('img', '.photo_main').attr('src');
             console.log("img", img);
-            return img;
+            callback(img);
         });
     }
 };
