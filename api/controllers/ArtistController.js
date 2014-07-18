@@ -30,7 +30,9 @@ module.exports = {
                       service.getComment(info.msg, info.uid, 1, function(comment){
 //                          return res.json(comment);
                           service.getPic(info.uid, 1, function(pic){
-                              return res.json(pic);
+                              service.getAlbum(info.uid, 1, function(alblm){
+                                  return res.json(alblm);
+                              })
                           });
                       });
                   });

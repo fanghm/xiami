@@ -251,9 +251,10 @@ var obj = {
      * @param
      * @returns 包含专辑的数组
      */
-    getAlbum: function (page) {
+    getAlbum: function (uid, page, callback) {
         var page = page || 1;
-        var urlGetAlbum = 'http://www.xiami.com/artist/album/id/6845/d//p//page/' + page;
+        var urlGetAlbum = 'http://www.xiami.com/artist/album/' + uid + '/d//p//page/' + page;
+        console.log("urlGetAlbum", urlGetAlbum);
 //    req.get(urlGetAlbum).pipe(fs.createWriteStream('xiamiAlbum.html'));
         req.get(urlGetAlbum, function (e, r, b) {
             $ = cheerio.load(b);
@@ -300,6 +301,7 @@ var obj = {
 //            arr.push(obj);
             });
             console.log("arr", arr);
+            return callback(arr);
 //        console.log("p", p);
         });
     },
