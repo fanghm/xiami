@@ -11,7 +11,9 @@
         "optimist": "0.3.4",
         "request":"*",
         "cheerio":"*",
-        "async": "*"
+        "async": "*",
+        "sails-mongo": "~0.9.7",
+        "node-uuid":"*"
     },
     "scripts": {
         "start": "node app.js",
