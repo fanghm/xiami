@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="xiami">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css"/>
+</head>
+<body ng-controller="MainCtrl">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+            <form ng-submit="search(artist.name)">
+                <input type="text" ng-model="artist.name"/>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-lg-4">
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" ng-repeat="row in albums">
+        <span>唱片公司{{row.albumCompany}}</span> <br/>
+        <span>专辑名: {{row.albumName}}</span><br/>
+        <span>类型: {{row.albumType}}</span><br/>
+        <span>时间： {{row.publicTime}}</span><br/>
+        <span><img src="{{row.albumPicSrc}}" alt=""/></span><br/>
+        <p>描述：{{row.albumDesc}}</p>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row"></div>
+</div>
+<div class="container">
+    <div class="row">
+    </div>
+</div>
+<script src="../js/angular.min.js"></script>
+<script src="../js/angular-resource.min.js"></script>
+<script src="../js/ui-bootstrap-tpls.min.js"></script>
+<script>
+    var app = angular.module('xiami', [
+        'ui.bootstrap',
+        'ngResource'
+    ]);
+    app.controller('MainCtrl', ['$scope', '$resource', function($scope, $resource){
+        var AjaxForIndex = $resource('/artist');
+        $scope.search = function(name){
+            AjaxForIndex.get({name: name}, function(result){
+                $scope.info = result;
+            })
+        }
+        var AjaxForGetAlbum = $resource('/artist/getAlbum');
+        AjaxForGetAlbum.query({page: 1}, function(result){
+           $scope.albums = result;
+        });
+    }]);
+</script>
+</body>
+</html>

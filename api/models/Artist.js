@@ -9,6 +9,12 @@
 module.exports = {
 
     attributes: {
+        name: {
+            type: 'STRING'
+        },
+        uid: {
+            type: 'STRING'
+        },
   	    account: {
             type: 'JSON'
         },
@@ -28,7 +34,7 @@ module.exports = {
             type: 'ARRAY'
         },
         picture : {
-            type: 'ARRAY'
+            type: 'JSON'
         },
 
         album : {

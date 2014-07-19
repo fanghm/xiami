@@ -21,26 +21,50 @@ module.exports = {
     find: function (req, res) {
         var name = req.query.name;
 //      console.log("name", name);
-        service.getIndexHtml(name, function (info) {
-//          console.log("info", info);
-            var obj = {};
-            if (info.code == 200) {
-                service.getAccount(info.msg, function (account) {
-//                  console.log("account", account);
-                    req.session.user = {
-                        uid: info.uid
-                    };
-                    obj.account = account;
-                    service.getPopMusic(info.msg, function (popMusic) {
-                        obj.popMusic = popMusic;
-                        service.getComment(info.msg, info.uid, 1, function (comment) {
-                            obj.comment = comment;
-                            return res.json(obj);
-                        });
-                    });
-                });
+        Artist.findByName(name).done(function(err, result){
+            if (err) {
+                return res.send(500);
+            }
+            if (result.length) {
+                var a = result[0];
+                var obj = {
+                    uid: a.uid,
+                    name: a.name,
+                    popMusic: a.popMusic,
+                    comment: a.comment,
+                    account: a.account
+                };
+                console.log("从数据库中查到此人:", obj);
+                return res.json(200, obj);
             } else {
-                return res.send('您要找的是不是:' + info.msg);
+                service.getIndexHtml(name, function (info) {
+//          console.log("info", info);
+                    var obj = {};
+                    if (info.code == 200) {
+                        service.getAccount(info.msg, function (account) {
+//                  console.log("account", account);
+                            req.session.user = {
+                                uid: info.uid
+                            };
+                            obj.account = account;
+                            service.getPopMusic(info.msg, function (popMusic) {
+                                obj.popMusic = popMusic;
+                                service.getComment(info.msg, info.uid, 1, function (comment) {
+                                    obj.comment = comment;
+                                    obj.uid = info.uid;
+                                    obj.name = name;
+//                            console.log("obj", obj);
+
+                                    Artist.create(obj, function(err, result){
+                                        return res.json(obj);
+                                    });
+                                });
+                            });
+                        });
+                    } else {
+                        return res.send('您要找的是不是:' + info.msg);
+                    }
+                });
             }
         });
     },
@@ -51,7 +75,9 @@ module.exports = {
         }
         var uid = req.session.user.uid;
         service.getBasicInfo(uid, function (info) {
-            res.json(info);
+            Artist.update({uid: uid}, {basicInfo: info}, function(err, result){
+                res.json(info);
+            });
         });
     },
 
@@ -61,7 +87,9 @@ module.exports = {
         }
         var uid = req.session.user.uid;
         service.getSimilarArtist(uid, function (info) {
-            res.json(info);
+            Artist.update({uid: uid}, {similarArtist: info}, function(err, result){
+                res.json(info);
+            });
         });
     },
 
@@ -72,7 +100,12 @@ module.exports = {
         var page = req.query.page || 1;
         var uid = req.session.user.uid;
         service.getPic(uid, page, function (pic) {
-            res.json(pic);
+            Artist.findByUid(uid).done(function(err, artist){
+                artist[0].picture[page] = pic;
+                artist[0].save(function(err, result){
+                    res.json(pic);
+                });
+            });
         });
     },
 
