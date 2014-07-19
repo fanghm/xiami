@@ -12,6 +12,9 @@ module.exports = {
         name: {
             type: 'STRING'
         },
+        avatar: {
+            type: 'STRING'
+        },
         uid: {
             type: 'STRING'
         },

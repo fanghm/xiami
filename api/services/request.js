@@ -35,10 +35,11 @@ var obj = {
             var i1 = id.lastIndexOf('/');
             var i2 = id.lastIndexOf('?');
             var uid = id.substring(i1 + 1, i2); // 某个歌手的唯一uid
+            var avatar = $('img', '.top_box').attr('src');
             if (id) {
                 var indexUrl = 'http://www.xiami.com' + id;
                 req.get(indexUrl, function (e1, r1, b1) {
-                    return callback({code: 200, msg: b1, id: id, uid: uid});
+                    return callback({code: 200, msg: b1, id: id, uid: uid, avatar: avatar});
                 });
 //                req.get(indexUrl).pipe(fs.createWriteStream('xiami.html'));
 /*                var objArtist = {

@@ -13,7 +13,9 @@
         "cheerio":"*",
         "async": "*",
         "sails-mongo": "~0.9.7",
-        "node-uuid":"*"
+        "node-uuid":"*",
+        "gulp": "*",
+        "gulp-livereload":"*"
     },
     "scripts": {
         "start": "node app.js",

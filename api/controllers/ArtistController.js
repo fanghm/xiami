@@ -32,7 +32,11 @@ module.exports = {
                     name: a.name,
                     popMusic: a.popMusic,
                     comment: a.comment,
-                    account: a.account
+                    account: a.account,
+                    avatar: a.avatar
+                };
+                req.session.user = {
+                    uid: a.uid
                 };
                 console.log("从数据库中查到此人:", obj);
                 return res.json(200, obj);
@@ -53,6 +57,7 @@ module.exports = {
                                     obj.comment = comment;
                                     obj.uid = info.uid;
                                     obj.name = name;
+                                    obj.avatar = info.avatar;
 //                            console.log("obj", obj);
 
                                     Artist.create(obj, function(err, result){

@@ -87,7 +87,7 @@
 <section id="left-sidebar">
 
     <div class="logo">
-        <a href="http://stephenmuscat.com/twilli_air/1.1/#intro" class="link-scroll">爱虾米</a>
+        <h2><a href="#intro" class="link-scroll">爱虾米</a></h2>
     </div>
     <!-- .logo -->
 
@@ -97,75 +97,82 @@
 
     <ul id="main-menu">
         <li id="menu-item-text" class="menu-item scroll"><a
-                href="http://stephenmuscat.com/twilli_air/1.1/#text">艺人档案</a></li>
+                href="#text">艺人档案</a></li>
         <li id="menu-item-carousel" class="menu-item scroll"><a
-                href="http://stephenmuscat.com/twilli_air/1.1/#carousel">热门歌曲</a></li>
+                href="#carousel">热门歌曲</a></li>
         <li id="menu-item-grid" class="menu-item scroll"><a
-                href="http://stephenmuscat.com/twilli_air/1.1/#grid">所有专辑</a></li>
+                href="#grid">所有专辑</a></li>
         <li id="menu-item-featured" class="menu-item scroll"><a
-                href="http://stephenmuscat.com/twilli_air/1.1/#featured">艺人图片</a></li>
+                href="#featured">艺人图片</a></li>
         <li id="menu-item-contact" class="menu-item scroll active"><a
-                href="http://stephenmuscat.com/twilli_air/1.1/#contact">艺人评论</a></li>
+                href="#contact">艺人评论</a></li>
         <li id="menu-item-contact2" class="menu-item scroll active"><a
-                href="http://stephenmuscat.com/twilli_air/1.1/#contact2">相似艺人</a></li>
+                href="#contact2">相似艺人</a></li>
+        <li id="menu-item-contact3" class="menu-item scroll active">
+            <form ng-submit="search(name)">
+            <div class="form-group">
+                <input type="text" ng-model="name" class="form-control" id="exampleInputEmail2" placeholder="输入艺术家名字">
+            </div>
+            </form>
+        </li>
+
     </ul>
     <!-- #main-menu -->
 
 </section>
 <!-- #left-sidebar -->
 <!-- end: Left Sidebar -->
-<div class="container">
+<!--<div class="container">
     <div class="row" ng-repeat="row in albums">
         <span>唱片公司{{row.albumCompany}}</span> <br/>
         <span>专辑名: {{row.albumName}}</span><br/>
         <span>类型: {{row.albumType}}</span><br/>
         <span>时间： {{row.publicTime}}</span><br/>
         <span><img src="{{row.albumPicSrc}}" alt=""/></span><br/>
-
-        <p>描述：{{row.albumDesc}}</p>
-
+        <p>描述：{{row.albumDesc}}</p>f
     </div>
-</div>
+</div>-->
 <section id="main-content" class="clearfix">
 
-<article id="intro" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg5.jpg">
-    <div class="content-wrapper clearfix" style="position: absolute;">
-        <div class="col-sm-10 col-md-9 pull-right">
+<!--<article id="intro" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg5.jpg">
+    <div class="row">
+        <h1 style="text-align: center;">爱虾米，爱音乐，爱生活</h1>
+    </div>
+    <div ng-repeat="row in rows" class="row" style="margin-bottom: 10px;">
+        <div class="col-lg-1 col-sm-2" ng-repeat="obj in row">
+            <img src="./images/demo.jpg" alt="" style="opacity: 0.5"/>
+        </div>
+    </div>
+&lt;!&ndash;    <div class="content-wrapper clearfix" style="position: absolute;">
+        <div class="col-sm-12">
+            <h1>爱虾米，爱音乐，爱生活</h1>
+            <div class="row">
 
-            <section class="feature-text">
-                <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
-
-                <p>Etiam at ligula sit amet arcu laoreet consequat. Duis dictum lorem metus, vitae dapibus risus
-                    imperdiet nec. Suspendisse molestie lorem odio, sit amet. </p>
-
-                <p><a href="http://stephenmuscat.com/twilli_air/1.1/#text"
-                      class="link-scroll btn btn-outline-inverse btn-lg">find out more</a></p>
-            </section>
+            </div>
 
         </div>
-        <!-- .col-sm-10 -->
-    </div>
-    <!-- .content-wrapper -->
-</article>
+        &lt;!&ndash; .col-sm-10 &ndash;&gt;
+    </div>&ndash;&gt;
+    &lt;!&ndash; .content-wrapper &ndash;&gt;
+</article>-->
 <!-- .section-wrapper -->
 
 <article id="text" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg1.jpg">
     <div class="content-wrapper clearfix" style="position: absolute;">
         <div class="col-sm-10 col-md-9 pull-right">
 
-            <h1 class="section-title">Text Content</h1>
+            <h1 class="section-title"><span ng-bind="info.name"></span></h1>
 
-            <p class="feature-paragraph"><img data-img-src="assets/images/other_images/transp-image5b.png"
+            <p class="feature-paragraph">
+                <img data-img-src="assets/images/other_images/transp-image5b.png"
                                               class="pull-right" alt="Lorem Ipsum"
-                                              src="./index_files/transp-image5b.png">Etiam at ligula sit amet arcu
-                laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec. <a
-                        href="http://stephenmuscat.com/twilli_air/1.1/#carousel">Suspendisse molestie lorem odio</a>,
-                sit amet. Laoreet consequat. Duis dictum lorem metus, vitae dapibus.</p>
-            <h4>Duis dictum lorem metus</h4>
+                                              ng-src="{{info.avatar}}">
+                粉丝数：<span ng-bind="info.account.fansCount"></span><br/>
+                评论数：<span ng-bind="info.account.commentCount"></span><br/>
+            </p>
+            <h4>艺人档案</h4>
 
-            <p>Suspendisse molestie lorem odio, sit amet. Duis dictum lorem metus, vitae dapibus risus imperdiet nec.
-                Suspendisse molestie lorem odio. Etiam scelerisque lacus tempor, rhoncus diam vel, gravida felis. Fusce
-                tristique sem et leo. Pellentesque sed malesuada turpis. Quisque eget lacus sit amet dui.</p>
+            <p><span ng-bind-html="basicInfo"></span></p>
 
             <p><a href="" onclick="populate_and_open_modal(event, &#39;modal-content-1&#39;);"
                   class="btn btn-outline-inverse btn-sm">read more</a></p>
@@ -688,7 +695,7 @@
     </ul>
 
     <!-- copyright text -->
-    <div class="footer-text-line">© 2014 Twilli | Air</div>
+    <div class="footer-text-line">© 2014 爱虾米</div>
 </section>
 <!-- end: Footer -->
 
@@ -754,26 +761,8 @@
 <script src="./js/angular.min.js"></script>
 <script src="./js/angular-resource.min.js"></script>
 <script src="./js/ui-bootstrap-tpls.min.js"></script>
-<script>
-    var app = angular.module('xiami', [
-        'ui.bootstrap',
-        'ngResource'
-    ]);
-    app.controller('MainCtrl', ['$scope', '$resource', function ($scope, $resource) {
-        var AjaxForIndex = $resource('/artist');
+<script src="./js/me.js"></script>
 
-        $scope.search = function (name) {
-            AjaxForIndex.get({name: name}, function (result) {
-                $scope.info = result;
-            })
-        };
-        $scope.search('西村由纪江');
-/*        var AjaxForGetAlbum = $resource('/artist/getAlbum');
-        AjaxForGetAlbum.query({page: 1}, function (result) {
-            $scope.albums = result;
-        });*/
-    }]);
-</script>
 
 
 </body>
