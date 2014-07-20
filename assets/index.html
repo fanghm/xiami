@@ -172,10 +172,10 @@
             </p>
             <h4>艺人档案</h4>
 
-            <p><span ng-bind-html="basicInfo"></span></p>
+            <p style="text-align: left"><span ng-bind="basicInfo | limitTo: 800">...</span></p>
 
             <p><a href="" onclick="populate_and_open_modal(event, &#39;modal-content-1&#39;);"
-                  class="btn btn-outline-inverse btn-sm">read more</a></p>
+                  class="btn btn-outline-inverse btn-sm">阅读详情</a></p>
 
             <div class="content-to-populate-in-modal" id="modal-content-1">
                 <h1>Lorem Ipsum</h1>
@@ -761,6 +761,7 @@
 <script src="./js/angular.min.js"></script>
 <script src="./js/angular-resource.min.js"></script>
 <script src="./js/ui-bootstrap-tpls.min.js"></script>
+<script src="./js/angular-sanitize.min.js"></script>
 <script src="./js/me.js"></script>
 
 

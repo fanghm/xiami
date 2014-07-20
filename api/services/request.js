@@ -201,7 +201,7 @@ var obj = {
 //    req.get(urlBasicInfo).pipe(fs.createWriteStream('xiamiDangan.html'));
         req.get(urlBasicInfo, function (e, r, b) {
             $ = cheerio.load(b);
-            var desc = $('.profile').text();
+            var desc = $('.profile').text().replace(/\\r/g, '').replace(/\\t/g, '').replace(/\\n/g, '');
 //        console.log("desc", desc);
             return callback(desc);
         })

@@ -81,7 +81,7 @@ module.exports = {
         var uid = req.session.user.uid;
         service.getBasicInfo(uid, function (info) {
             Artist.update({uid: uid}, {basicInfo: info}, function(err, result){
-                res.json(info);
+                res.json({msg: info});
             });
         });
     },

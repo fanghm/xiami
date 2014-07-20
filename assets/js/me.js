@@ -4,9 +4,10 @@
 
 var app = angular.module('xiami', [
     'ui.bootstrap',
-    'ngResource'
+    'ngResource',
+    'ngSanitize'
 ]);
-app.controller('MainCtrl', ['$scope', '$resource', function ($scope, $resource) {
+app.controller('MainCtrl', ['$scope', '$resource', '$sce', function ($scope, $resource, $sce) {
     var AjaxForIndex = $resource('/artist');
     $scope.rows = [
         [1, 2, 3, 5, 6, 4, 7, 8, 9, 10, 11, 12],
@@ -25,7 +26,8 @@ app.controller('MainCtrl', ['$scope', '$resource', function ($scope, $resource) 
             });
             var AjaxForGetBasicInfo = $resource('/artist/getBasicInfo');
             AjaxForGetBasicInfo.get({}, function(result){
-                $scope.basicInfo = result;
+                console.log("result", result.msg);
+                $scope.basicInfo = result.msg
             })
         })
     };
