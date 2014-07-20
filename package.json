@@ -18,10 +18,10 @@
         "gulp-livereload":"*"
     },
     "scripts": {
-        "start": "node app.js",
-        "debug": "node debug app.js"
+        "start": "node xiami.js",
+        "debug": "node debug xiami.js"
     },
-    "main": "app.js",
+    "main": "xiami.js",
     "repository": "",
     "author": "",
     "license": ""
