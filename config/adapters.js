@@ -24,7 +24,9 @@ module.exports.adapters = {
         module: 'sails-mongo',
         host: 'localhost',
         schema: true,
-        database: 'xiami-dev'
+        database: 'xiami-dev',
+        user: 'root',
+        password: 'sa'
     },
 
     production: {

@@ -19,7 +19,7 @@
     },
     "scripts": {
         "start": "node xiami.js",
-        "debug": "node debug xiami.js"
+        "test": "./node_modules/.bin/mocha --reporter spec"
     },
     "devDependencies": {
         "mocha": "latest",

@@ -11,7 +11,7 @@ describe('# find接口（web端的首次请求）', function(){
     this.timeout(15000);
     it('1.查询成功', function(done){
         var Find = new Collection('artist');
-        Find.get({url: {name: '王力宏'}}, function(err, res, body){
+        Find.get({url: {name: '陈奕迅'}}, function(err, res, body){
             should.not.exist(err);
             res.statusCode.should.equal(200);
 //            console.log("body", body);

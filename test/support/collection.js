@@ -21,7 +21,7 @@ Collection.prototype.request = function (options, fn) {
     var url = this.url;
     options.url = url + (options.url ? '?' + querystring.stringify(options.url): '');
     options.json = options.json || this.json;
-    console.log("options", options);
+//    console.log("options", options);
     request(options, fn);
 }
 

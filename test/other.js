@@ -47,7 +47,7 @@ describe('# 依赖session的查询', function(){
         GetAlbum.get({url:{page:1}}, function(err, res, body){
             should.not.exist(err);
             res.statusCode.should.equal(200);
-            console.log("body", body);
+//            console.log("body", body);
             done();
         });
     });
@@ -56,7 +56,7 @@ describe('# 依赖session的查询', function(){
         GetBigPic.get({url:{id:'23302'}}, function(err, res, body){
             should.not.exist(err);
             res.statusCode.should.equal(200);
-            console.log("body", body);
+//            console.log("body", body);
             done();
         });
     });
