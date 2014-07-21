@@ -21,6 +21,17 @@
         "start": "node xiami.js",
         "debug": "node debug xiami.js"
     },
+    "devDependencies": {
+        "mocha": "latest",
+        "should": "latest",
+        "node-uuid":"*",
+        "gulp": "*",
+        "gulp-livereload":"*",
+        "async":"*",
+        "clone":"*",
+        "supervisor":"*",
+        "shelljs":"*"
+    },
     "main": "xiami.js",
     "repository": "",
     "author": "",

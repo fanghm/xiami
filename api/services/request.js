@@ -23,71 +23,37 @@ var obj = {
         req.get(url, function (e, r, b) {
 //    console.log("b", b);
 //    console.log("b", b);
-            $ = cheerio.load(b);
-            var text = $('span', '.search_box').text();
-            if (/^您要找/.test(text)) {
-                var name = $('b', '.search_box').text();
+            if (!e && r.statusCode == 200) {
+                $ = cheerio.load(b);
+                var text = $('span', '.search_box').text();
+                if (/^您要找/.test(text)) {
+                    var name = $('b', '.search_box').text();
 //        console.log("name", name);
-                return callback({code: 404, msg: name});
+                    return callback({code: 404, msg: name}); // 未查到艺人后返回推荐的艺人名
 //        return res.json();
-            }
-            var id = $('a', '.top_box').attr('href');
-            var i1 = id.lastIndexOf('/');
-            var i2 = id.lastIndexOf('?');
-            var uid = id.substring(i1 + 1, i2); // 某个歌手的唯一uid
-            var avatar = $('img', '.top_box').attr('src');
-            if (id) {
-                var indexUrl = 'http://www.xiami.com' + id;
-                req.get(indexUrl, function (e1, r1, b1) {
-                    return callback({code: 200, msg: b1, id: id, uid: uid, avatar: avatar});
-                });
-//                req.get(indexUrl).pipe(fs.createWriteStream('xiami.html'));
-/*                var objArtist = {
-                    account: {          // 试听统计
-                        tryListen: '',  // 试听数
-                        fansi: '',      // 粉丝数
-                        comment: ''      // 评论
-                    },
-                    popMusic: [         // 热门歌曲
-                        {
-                            name: '',   // 名称
-                            href: ''     // 歌曲链接
+                }
+                var id = $('a', '.top_box').attr('href');
+                if (id) {
+                    var i1 = id.lastIndexOf('/');
+                    var i2 = id.lastIndexOf('?');
+                    var uid = id.substring(i1 + 1, i2); // 某个歌手的唯一uid
+                    var avatar = $('img', '.top_box').attr('src');
+                    var indexUrl = 'http://www.xiami.com' + id;
+                    req.get(indexUrl, function (e1, r1, b1) {
+                        if (!e1 && r1.statusCode == 200) {
+                            return callback({code: 200, msg: b1, id: id, uid: uid, avatar: avatar});
+                        } else {
+                            return callback({code: 500, msg: 'getIndexHtml函数：根据url爬艺人主页有误'});
                         }
-                    ],
-                    similarArtist: [    // 相似艺人
-                        {
-                            name: '',   // 艺人名称
-                            href: '',   // 艺人链接
-                            img: ''     // 艺人头像链接
-                        }
-                    ],
-                    basicInfo: {        // 基本信息
-                        area: '',        // 区域
-                        style: '',       // 风格
-                        archives: ''     // 档案
-                    },
-                    tag: [],            // 个人标签
-                    comment: [           // 评论
-                        {
-                            name: '',    // 评论人姓名
-                            time: '',    // 评论时间
-                            content: '', // 评论内容
-                            src: ''      // 头像
-                        }
-                    ],
-                    picture: [],        // 图片url
-                    album: [
-                        {
-                            name: '',    // 专辑名
-                            href: '',    // 专辑链接
-                            img: ''      // 专辑头像
-                        }
-                    ]
 
-                };*/
+                    });
+                } else {
+                    return callback({code: 405, msg: '亲!你又淘气了,不要乱输哟!'});
+                }
             } else {
-                return callback({code: 404, msg: name});
+                return callback({code: 500, msg: 'getIndexHtml函数：根据url爬网页有误'});
             }
+
         });
     },
 
@@ -168,25 +134,30 @@ var obj = {
         var urlSimilarArtist = 'http://www.xiami.com/artist/similar/id/' + uid;
 //    req.get(urlSimilarArtist).pipe(fs.createWriteStream('xiamiXiangSI.html'));
         req.get(urlSimilarArtist, function (e, r, b) {
-            $ = cheerio.load(b);
-            var a = $('.artist', '#guess_artists');
-            var arr = [];
-            a.each(function (i, elem) {
-                var name = $('a', this).attr('title');
-                var href = $('a', this).attr('href');
-                var img = $('img', this).attr('src');
-                var obj = {
-                    name: name,
-                    href: href,
-                    img: img
-                };
-                arr.push(obj)
+            if (!e && r.statusCode == 200) {
+                $ = cheerio.load(b);
+                var a = $('.artist', '#guess_artists');
+                var arr = [];
+                a.each(function (i, elem) {
+                    var name = $('a', this).attr('title');
+                    var href = $('a', this).attr('href');
+                    var img = $('img', this).attr('src');
+                    var obj = {
+                        name: name,
+                        href: href,
+                        img: img
+                    };
+                    arr.push(obj)
 
-            });
+                });
 //            console.log("a.text()", a);
 //            console.log("arr", arr);
 //        console.log(b);
-            return callback(arr);
+                return callback({code: 200, msg:arr});
+            } else {
+                return callback({code: 500, msg: 'getSimilarArtist:获取相似艺人出错'});
+            }
+
 
         })
     },
@@ -200,10 +171,15 @@ var obj = {
         var urlBasicInfo = 'http://www.xiami.com/artist/profile/id/' + id;
 //    req.get(urlBasicInfo).pipe(fs.createWriteStream('xiamiDangan.html'));
         req.get(urlBasicInfo, function (e, r, b) {
-            $ = cheerio.load(b);
-            var desc = $('.profile').text().replace(/\\r/g, '').replace(/\\t/g, '').replace(/\\n/g, '');
+            if (!e && r.statusCode == 200) {
+                $ = cheerio.load(b);
+                var desc = $('.profile').text();
 //        console.log("desc", desc);
-            return callback(desc);
+                return callback({code: 200, msg:desc});
+            } else {
+                return callback({code: 500, msg: 'getBasicInfo:获取艺人档案出错'});
+            }
+
         })
     },
 
@@ -256,34 +232,36 @@ var obj = {
         console.log("urlGetAlbum", urlGetAlbum);
 //    req.get(urlGetAlbum).pipe(fs.createWriteStream('xiamiAlbum.html'));
         req.get(urlGetAlbum, function (e, r, b) {
-            $ = cheerio.load(b);
-            var li = $('li', '.albumThread_list');
-            var arr = [];
-            li.each(function (i, elem) {
-                var albumPicSrc = $('img', this).attr('src');
-                var albumName = $('img', this).attr('alt');
-                var p = $('.company', this).text();
-                var albumCompany = $('');
-                var i1 = p.indexOf('唱片公司');
-                var i2 = p.indexOf('发行时间');
-                var i3 = p.indexOf('类别');
-                var albumCompany = p.substring(i1 + 5, i2).trim();
-                var publicTime = p.substring(i2 + 5, i3).trim();
-                var albumType = p.substring(i3 + 3).trim();
-                var albumDesc = $('.des', this).text();
-                var count = $('.counts', '.cate_viewmode').text();
-                var i4 = count.indexOf('张');
-                count = count.substring(1, i4);
-                var obj = {
-                    albumPicSrc: albumPicSrc,
-                    albumName: albumName,
-                    albumCompany: albumCompany,
-                    publicTime: publicTime,
-                    albumType: albumType,
-                    albumDesc: albumDesc,
-                    count: count
-                };
-                arr.push(obj);
+            if (!e && r.statusCode == 200) {
+                $ = cheerio.load(b);
+                var li = $('li', '.albumThread_list');
+                var arr = [];
+                if (li && li.length) {
+                    li.each(function (i, elem) {
+                        var albumPicSrc = $('img', this).attr('src');
+                        var albumName = $('img', this).attr('alt');
+                        var p = $('.company', this).text();
+                        var albumCompany = $('');
+                        var i1 = p.indexOf('唱片公司');
+                        var i2 = p.indexOf('发行时间');
+                        var i3 = p.indexOf('类别');
+                        var albumCompany = p.substring(i1 + 5, i2).trim();
+                        var publicTime = p.substring(i2 + 5, i3).trim();
+                        var albumType = p.substring(i3 + 3).trim();
+                        var albumDesc = $('.des', this).text();
+                        var count = $('.counts', '.cate_viewmode').text();
+                        var i4 = count.indexOf('张');
+                        count = count.substring(1, i4);
+                        var obj = {
+                            albumPicSrc: albumPicSrc,
+                            albumName: albumName,
+                            albumCompany: albumCompany,
+                            publicTime: publicTime,
+                            albumType: albumType,
+                            albumDesc: albumDesc,
+                            count: count
+                        };
+                        arr.push(obj);
 //            console.log("albumDesc", albumDesc);
 //            console.log("albumTime", albumTime);
 //            console.log("albumType", albumType);
@@ -298,10 +276,16 @@ var obj = {
 //                src: src
 //            };
 //            arr.push(obj);
-            });
-            console.log("arr", arr);
-            return callback(arr);
+                    });
+//                    console.log("arr", arr);
+                    return callback({code: 200, msg:arr});
 //        console.log("p", p);
+                } else {
+                    return callback({code: 500, msg: 'getAlbum:获取艺人专辑出错'});
+                }
+            } else {
+                return callback({code: 500, msg: 'getAlbum:获取艺人专辑出错'});
+            }
         });
     },
 
@@ -321,24 +305,29 @@ var obj = {
 //        console.log("urlGetPic", urlGetPic);
         req.get(urlGetPic, function (e, r, b) {
 //            console.log("b", b);
-            $ = cheerio.load(b);
-            var p = $('li', '.photo_list');
+
+            if (!e && r.statusCode == 200) {
+                $ = cheerio.load(b);
+                var p = $('li', '.photo_list');
 //            console.log("p", p);
-            var arr = [];
-            p.each(function (i, elem) {
-                var bigPircHref = $('a', $('.cover', this)).attr('href');
-                var src = $('img', this).attr('src');
+                var arr = [];
+                p.each(function (i, elem) {
+                    var bigPircHref = $('a', $('.cover', this)).attr('href');
+                    var src = $('img', this).attr('src');
 //            console.log("src", src);
 //            console.log("bigPircHref", bigPircHref);
-                var obj = {
-                    bigPircHref: bigPircHref,
-                    src: src
-                };
-                arr.push(obj);
-            });
+                    var obj = {
+                        bigPircHref: bigPircHref,
+                        src: src
+                    };
+                    arr.push(obj);
+                });
 //            console.log("arr", arr);
 //        console.log("p", p);
-            return callback(arr);
+                return callback({code: 200, msg:arr});
+            } else {
+                return callback({code: 500, msg: 'getPic:获取艺人图片出错'});
+            }
         });
     },
 
@@ -352,10 +341,18 @@ var obj = {
 
 //    req.get(urlGetBigPic).pipe(fs.createWriteStream('xiamiBigPic.html'));
         req.get(urlGetBigPic, function (e, r, b) {
-            $ = cheerio.load(b);
-            var img = $('img', '.photo_main').attr('src');
-            console.log("img", img);
-            callback(img);
+            if (!e && r.statusCode == 200) {
+                $ = cheerio.load(b);
+                var img = $('img', '.photo_main').attr('src');
+                console.log("img", img);
+                if (img) {
+                    return callback({code: 200, msg:img});
+                } else {
+                    return callback({code: 500, msg: 'getBigPic:获取大图出错'});
+                }
+
+            }
+            return callback({code: 500, msg: 'getBigPic:获取大图出错'});
         });
     }
 };

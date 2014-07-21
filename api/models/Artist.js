@@ -41,7 +41,7 @@ module.exports = {
         },
 
         album : {
-            type: 'ARRAY'
+            type: 'JSON'
         }
     }
 
