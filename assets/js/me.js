@@ -7,6 +7,15 @@ var app = angular.module('xiami', [
     'ngResource',
     'ngSanitize'
 ]);
+app.filter('addDot', function(){
+    return function(input){
+        if (input && input.length==800) {
+            return input + '...';
+        } else {
+            return input;
+        }
+    }
+})
 app.controller('MainCtrl', ['$scope', '$resource', '$sce', function ($scope, $resource, $sce) {
     var AjaxForIndex = $resource('/artist');
     $scope.rows = [
