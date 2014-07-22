@@ -257,7 +257,7 @@ module.exports = {
         }
         service.getBigPic(id, function (info) {
             if (info.code == 200) {
-                return res.send(info.msg);
+                return res.json(200, {msg:info.msg});
             } else {
                 console.log('获取大图失败');
                 return res.send(500);

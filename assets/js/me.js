@@ -35,11 +35,32 @@ app.controller('MainCtrl', ['$scope', '$resource', '$sce', function ($scope, $re
             });
             var AjaxForGetBasicInfo = $resource('/artist/getBasicInfo');
             AjaxForGetBasicInfo.get({}, function(result){
-                console.log("result", result.msg);
                 $scope.basicInfo = result.msg
-            })
+            });
+            var AjaxForGetArtistPics = $resource('/artist/getArtistPics');
+            AjaxForGetArtistPics.query({}, function(result){
+                $scope.pics = result
+                console.log("$scope.pics", $scope.pics);
+            });
         })
     };
     $scope.search('西村由纪江');
-
+    $scope.url = {
+        bigPicUrl: '/'
+    }
+    $scope.getBigPic = function(url, id){
+        var v = url.lastIndexOf('/');
+        var url = url.substr(v+1);
+        console.log(url);
+        var idName = '#bigPic'+ id;
+        console.log("idName", idName);
+        var AjaxForGetBigPic = $resource('/artist/getBigPic');
+        AjaxForGetBigPic.get({id: url}, function(result){
+            console.log("result", result);
+            $scope.url = {
+                bigPicUrl: result.msg
+            };
+            $(idName).attr("src",result.msg);
+        });
+    };
 }]);

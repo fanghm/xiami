@@ -367,29 +367,29 @@
     <div class="content-wrapper clearfix" style="position: absolute;">
         <div class="col-sm-11 col-md-10 pull-right">
 
-            <h1 class="section-title">Grid</h1>
+            <h1 class="section-title">艺人评论</h1>
 
             <!-- grid -->
             <section class="grid row clearfix clearfix-for-2cols">
 
                 <!-- grid item -->
-                <div class="grid-item col-md-6">
-                    <div class="item-content clearfix">
-                        <span class="icon glyphicon glyphicon-stats"></span>
-
-                        <div class="text-content">
-                            <h5>Lorem ipsum dolor sit amet</h5>
-
-                            <p>Nullam ac rhoncus sapien, non gravida purus. Aliquam adipiscing eros non elit imperdiet
-                                congue. Integer ultricies.</p>
+                <div class="grid-item col-md-6" ng-repeat="comment in info.comment">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="row"><img ng-src="{{comment.src}}"></div>
+                            <div class="row">{{comment.name}}</div>
+                            <div class="row">{{comment.time}}</div>
                         </div>
+                        <div class="col-md-8">{{comment.content}}</div>
+
                     </div>
-                    <!-- end: .item-content -->
-                </div>
+
+
+                </div >
                 <!-- end: .grid-item -->
 
                 <!-- grid item -->
-                <div class="grid-item col-md-6">
+<!--                <div class="grid-item col-md-6">
                     <div class="item-content clearfix">
                         <span class="icon glyphicon glyphicon-record"></span>
 
@@ -400,12 +400,12 @@
                                 ultricies sed ligula eget tempus.</p>
                         </div>
                     </div>
-                    <!-- end: .item-content -->
+                    &lt;!&ndash; end: .item-content &ndash;&gt;
                 </div>
                 <article class="clearfix"></article>
-                <!-- end: .grid-item -->
+                &lt;!&ndash; end: .grid-item &ndash;&gt;
 
-                <!-- grid item -->
+                &lt;!&ndash; grid item &ndash;&gt;
                 <div class="grid-item col-md-6">
                     <div class="item-content clearfix">
                         <span class="icon glyphicon glyphicon-lock"></span>
@@ -417,11 +417,11 @@
                                 eget.</p>
                         </div>
                     </div>
-                    <!-- end: .item-content -->
+                    &lt;!&ndash; end: .item-content &ndash;&gt;
                 </div>
-                <!-- end: .grid-item -->
+                &lt;!&ndash; end: .grid-item &ndash;&gt;
 
-                <!-- grid item -->
+                &lt;!&ndash; grid item &ndash;&gt;
                 <div class="grid-item col-md-6">
                     <div class="item-content clearfix">
                         <span class="icon glyphicon glyphicon-file"></span>
@@ -433,8 +433,8 @@
                                 sed ligula eget tempus.</p>
                         </div>
                     </div>
-                    <!-- end: .item-content -->
-                </div>
+                    &lt;!&ndash; end: .item-content &ndash;&gt;
+                </div>-->
                 <article class="clearfix"></article>
                 <!-- end: .grid-item -->
 
@@ -452,126 +452,37 @@
     <div class="content-wrapper clearfix" style="position: absolute;">
         <div class="col-sm-11 pull-right">
 
-            <h1 class="section-title">Featured</h1>
+            <h1 class="section-title">艺人图片</h1>
 
             <!-- feature columns -->
             <section class="feature-columns row clearfix">
 
                 <!-- feature 1 -->
-                <article class="feature-col col-md-4">
-                    <a href="" onclick="populate_and_open_modal(event, &#39;modal-content-6&#39;);"
+                <article class="feature-col col-md-4"  ng-repeat="pic in pics">
+                    <a href="" onclick="populate_and_open_modal(event, &#39;modal-content-6&#39;);" ng-click="getBigPic(pic.bigPircHref, $index)"
                        class="thumbnail linked">
                         <div class="image-container">
                             <img data-img-src="assets/images/other_images/project-3.jpg" class="item-thumbnail"
-                                 alt="Lorem Ipsum" src="./index_files/project-3.jpg">
+                                 alt="Lorem Ipsum" ng-src="{{pic.src}}" style="height: 254px !important; width: 254px!important;">
                         </div>
-                        <div class="caption">
+<!--                        <div class="caption">
                             <h5>Image Carousel</h5>
 
                             <p>This feature contains an image carousel when you open popup.</p>
-                        </div>
+                        </div>-->
                         <!-- .caption -->
                     </a><!-- .thumbnail -->
 
                     <div class="content-to-populate-in-modal" id="modal-content-6">
-                        <h1>Sed scelerisque</h1>
-
-                        <p>Nullam ac rhoncus. Aliquam adipiscing eros non elit imperdiet congue. Etiam at ligula sit
-                            amet arcu laoreet consequat.<br></p>
-
+                        <h1>{{info.name}}</h1>
                         <!-- image slider inside popup -->
                         <div id="unique-id-for-image-slider" class="owl-carousel popup-image-gallery">
-                            <!-- slide -->
                             <div>
-                                <!-- caption is optional. To remove it, remove the <h6> below -->
-                                <h6 class="caption">Caption for Image 1</h6>
-                                <img class="lazyOwl" data-src="assets/images/other_images/bg1.jpg">
-                            </div>
-                            <!-- slide -->
-                            <div>
-                                <h6 class="caption">Caption for Image 2</h6>
-                                <img class="lazyOwl" data-src="assets/images/other_images/bg2.jpg">
-                            </div>
-                            <!-- slide -->
-                            <div>
-                                <h6 class="caption">Caption for Image 3</h6>
-                                <img class="lazyOwl" data-src="assets/images/other_images/bg3.jpg">
+                                <img id="bigPic{{$index}}">
                             </div>
                         </div>
                     </div>
                     <!-- #modal-content-6 -->
-                </article>
-
-                <!-- feature 2 -->
-                <article class="feature-col col-md-4">
-                    <a href="" onclick="populate_and_open_modal(event, &#39;modal-content-7&#39;);"
-                       class="thumbnail linked">
-                        <div class="image-container">
-                            <img data-img-src="assets/images/other_images/project-2.jpg" class="item-thumbnail"
-                                 alt="Lorem Ipsum" src="./index_files/project-2.jpg">
-                        </div>
-                        <div class="caption">
-                            <h5>Nullam ac rhoncus</h5>
-
-                            <p>Nullam ac rhoncus. Aliquam adipiscing eros non elit imperdiet congue. Integer
-                                ultricies.</p>
-                        </div>
-                        <!-- .caption -->
-                    </a><!-- .thumbnail -->
-
-                    <div class="content-to-populate-in-modal" id="modal-content-7">
-                        <img data-img-src="assets/images/other_images/top-image2.jpg" class="full-width"
-                             alt="Lorem Ipsum" src="./index_files/top-image2.jpg">
-
-                        <h1>Sed scelerisque</h1>
-
-                        <p>Nullam ac rhoncus. Aliquam adipiscing eros non elit imperdiet congue. Etiam at ligula sit
-                            amet arcu laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec.
-                            Suspendisse molestie lorem odio, sit amet. </p>
-
-                        <p>Laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec. Suspendisse
-                            molestie lorem odio, sit amet.</p>
-
-                        <p>Suspendisse molestie lorem odio, sit amet. Duis dictum lorem metus, vitae dapibus risus
-                            imperdiet nec. Suspendisse molestie lorem odio test.</p>
-                    </div>
-                    <!-- #modal-content-7 -->
-                </article>
-
-                <!-- feature 3 -->
-                <article class="feature-col col-md-4">
-                    <a href="" onclick="populate_and_open_modal(event, &#39;modal-content-8&#39;);"
-                       class="thumbnail linked">
-                        <div class="image-container">
-                            <img data-img-src="assets/images/other_images/project-4.jpg" class="item-thumbnail"
-                                 alt="Lorem Ipsum" src="./index_files/project-4.jpg">
-                        </div>
-                        <div class="caption">
-                            <h5>Aliquam adipiscing</h5>
-
-                            <p>Nullam ac rhoncus. Aliquam adipiscing eros non elit imperdiet.</p>
-                        </div>
-                        <!-- .caption -->
-                    </a><!-- .thumbnail -->
-
-                    <div class="content-to-populate-in-modal" id="modal-content-8">
-                        <img data-img-src="assets/images/other_images/top-image3.jpg" class="full-width"
-                             alt="Lorem Ipsum" src="./index_files/top-image3.jpg">
-
-                        <h1>Sed scelerisque</h1>
-
-                        <p>Nullam ac rhoncus. Aliquam adipiscing eros non elit imperdiet congue. Etiam at ligula sit
-                            amet arcu laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec.
-                            Suspendisse molestie lorem odio, sit amet. </p>
-
-                        <p>Laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec. Suspendisse
-                            molestie lorem odio, sit amet.</p>
-
-                        <p>Suspendisse molestie lorem odio, sit amet. Duis dictum lorem metus, vitae dapibus risus
-                            imperdiet nec. Suspendisse molestie lorem odio test.</p>
-                    </div>
-                    <!-- #modal-content-8 -->
-
                 </article>
 
             </section>
