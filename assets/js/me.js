@@ -42,12 +42,19 @@ app.controller('MainCtrl', ['$scope', '$resource', '$sce', function ($scope, $re
                 $scope.pics = result
                 console.log("$scope.pics", $scope.pics);
             });
+            var AjaxForGetAlbum = $resource('/artist/getAlbum');
+            AjaxForGetAlbum.query({}, function(result){
+                $scope.ablums = result
+                console.log("$scope.ablums", $scope.ablums);
+            });
         })
     };
     $scope.search('西村由纪江');
     $scope.url = {
         bigPicUrl: '/'
-    }
+    };
+
+
     $scope.getBigPic = function(url, id){
         var v = url.lastIndexOf('/');
         var url = url.substr(v+1);
