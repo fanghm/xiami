@@ -87,7 +87,7 @@
 <section id="left-sidebar">
 
     <div class="logo">
-        <h2><a href="#intro" class="link-scroll">爱虾米</a></h2>
+        <h2><a href="" class="link-scroll" onclick="populate_and_open_modal(event, &#39;modal-content-0&#39;);">爱虾米</a></h2>
     </div>
     <!-- .logo -->
 
@@ -97,17 +97,17 @@
 
     <ul id="main-menu">
         <li id="menu-item-text" class="menu-item scroll"><a
-                href="#text">艺人档案</a></li>
-        <li id="menu-item-carousel" class="menu-item scroll"><a
-                href="#carousel">热门歌曲</a></li>
-        <li id="menu-item-grid" class="menu-item scroll"><a
-                href="#grid">所有专辑</a></li>
-        <li id="menu-item-featured" class="menu-item scroll"><a
-                href="#featured">艺人图片</a></li>
+                href="#desc">艺人档案</a></li>
         <li id="menu-item-contact" class="menu-item scroll active"><a
-                href="#contact">艺人评论</a></li>
+                href="#comment">艺人评论</a></li>
+        <li id="menu-item-carousel" class="menu-item scroll"><a
+                href="#hot">热门歌曲</a></li>
+        <li id="menu-item-grid" class="menu-item scroll"><a
+                href="#album">所有专辑</a></li>
+        <li id="menu-item-featured" class="menu-item scroll"><a
+                href="#pic">艺人图片</a></li>
         <li id="menu-item-contact2" class="menu-item scroll active"><a
-                href="#contact2">相似艺人</a></li>
+                href="#similar">相似艺人</a></li>
         <li id="menu-item-contact3" class="menu-item scroll active">
             <form ng-submit="search(name)">
             <div class="form-group">
@@ -120,18 +120,7 @@
     <!-- #main-menu -->
 
 </section>
-<!-- #left-sidebar -->
-<!-- end: Left Sidebar -->
-<!--<div class="container">
-    <div class="row" ng-repeat="row in albums">
-        <span>唱片公司{{row.albumCompany}}</span> <br/>
-        <span>专辑名: {{row.albumName}}</span><br/>
-        <span>类型: {{row.albumType}}</span><br/>
-        <span>时间： {{row.publicTime}}</span><br/>
-        <span><img src="{{row.albumPicSrc}}" alt=""/></span><br/>
-        <p>描述：{{row.albumDesc}}</p>f
-    </div>
-</div>-->
+
 <section id="main-content" class="clearfix">
 
 <!--<article id="intro" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg5.jpg">
@@ -157,7 +146,7 @@
 </article>-->
 <!-- .section-wrapper -->
 
-<article id="text" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg1.jpg">
+<article id="desc" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg1.jpg">
     <div class="content-wrapper clearfix" style="position: absolute;">
         <div class="col-sm-10 col-md-9 pull-right">
 
@@ -193,177 +182,7 @@
     </div>
     <!-- .content-wrapper -->
 </article>
-<!-- .section-wrapper -->
-
-<!--<article id="carousel" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg6.jpg">
-    <div class="content-wrapper clearfix" style="position: absolute; height: 70%;">
-
-        <div id="features-carousel" class="carousel slide with-title-indicators max-height" data-height-percent="70"
-             data-ride="carousel">
-
-            &lt;!&ndash; Indicators - slide navigation &ndash;&gt;
-            <ol class="carousel-indicators title-indicators">
-                <li data-target="#features-carousel" data-slide-to="0" class="">Lorem Ipsum</li>
-                <li data-target="#features-carousel" data-slide-to="1" class="">Suspendisse</li>
-                <li data-target="#features-carousel" data-slide-to="2" class="">Maecenas</li>
-                <li data-target="#features-carousel" data-slide-to="3" class="active">Scelerisque</li>
-            </ol>
-
-            &lt;!&ndash; Wrapper for slides &ndash;&gt;
-            <div class="carousel-inner">
-
-                <div class="item" style="">
-                    <div class="carousel-text-content" style="height: 100%;">
-                        <img src="./index_files/transp-image1.png" class="icon" alt="Lorem Ipsum">
-
-                        <h2 class="title">Lorem Ipsum</h2>
-
-                        <p>Suspendisse molestie lorem odio, sit amet. Duis dictum lorem metus, vitae dapibus risus
-                            imperdiet nec. Suspendisse molestie lorem odio.</p>
-
-                        <p><a href="" onclick="populate_and_open_modal(event, &#39;modal-content-2&#39;);"
-                              class="btn btn-outline-inverse btn-sm">read more</a></p>
-
-                        <div class="content-to-populate-in-modal" id="modal-content-2">
-                            <h1>Lorem Ipsum</h1>
-
-                            <p><img data-img-src="assets/images/other_images/transp-image1.png"
-                                    class="rounded_border hover_effect pull-left" alt="Lorem Ipsum"
-                                    src="./index_files/transp-image1.png">Etiam at ligula sit amet arcu laoreet
-                                consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec. <a
-                                        href="http://stephenmuscat.com/twilli_air/1.1/#">Suspendisse molestie lorem
-                                    odio</a>, sit amet. </p>
-
-                            <p>Laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec.
-                                Suspendisse molestie lorem odio, sit amet.</p>
-
-                            <p>Suspendisse molestie lorem odio, sit amet. Duis dictum lorem metus, vitae dapibus risus
-                                imperdiet nec. Suspendisse molestie lorem odio test.</p>
-                        </div>
-                        &lt;!&ndash; #modal-content-2 &ndash;&gt;
-                    </div>
-                </div>
-                &lt;!&ndash; .item &ndash;&gt;
-
-                <div class="item" style="">
-                    <div class="carousel-text-content" style="height: 100%;">
-                        <img src="./index_files/transp-image6.png" class="icon" alt="Lorem Ipsum">
-
-                        <h2 class="title">Suspendisse molestie</h2>
-
-                        <p>Etiam at ligula sit amet arcu laoreet consequat. Duis dictum lorem metus, vitae dapibus risus
-                            imperdiet nec. Duis dictum lorem metus.</p>
-
-                        <p><a href="" onclick="populate_and_open_modal(event, &#39;modal-content-3&#39;);"
-                              class="btn btn-outline-inverse btn-sm">read more</a></p>
-
-                        <div class="content-to-populate-in-modal" id="modal-content-3">
-                            <h1>Suspendisse molestie</h1>
-
-                            <p><img data-img-src="assets/images/other_images/transp-image6.png"
-                                    class="rounded_border hover_effect pull-left" alt="Lorem Ipsum"
-                                    src="./index_files/transp-image6.png">Etiam at ligula sit amet arcu laoreet
-                                consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec. <a
-                                        href="http://stephenmuscat.com/twilli_air/1.1/#">Suspendisse molestie lorem
-                                    odio</a>, sit amet. </p>
-
-                            <p>Laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec.
-                                Suspendisse molestie lorem odio, sit amet.</p>
-
-                            <p>Suspendisse molestie lorem odio, sit amet. Duis dictum lorem metus, vitae dapibus risus
-                                imperdiet nec. Suspendisse molestie lorem odio test.</p>
-                        </div>
-                        &lt;!&ndash; #modal-content-3 &ndash;&gt;
-                    </div>
-                </div>
-                &lt;!&ndash; .item &ndash;&gt;
-
-                <div class="item" style="">
-                    <div class="carousel-text-content" style="height: 100%;">
-                        <img src="./index_files/transp-image7.png" class="icon" alt="Lorem Ipsum">
-
-                        <h2 class="title">Maecenas id dolor</h2>
-
-                        <p>Fusce erat augue, fermentum sit amet congue a, ullamcorper ac enim. Maecenas id dolor
-                            imperdiet, mollis felis ut, pellentesque ante. Sed id congue arcu. Nulla eget commodo sem.
-                            Suspendisse suscipit, sem ac.</p>
-
-                        <p><a href="" onclick="populate_and_open_modal(event, &#39;modal-content-4&#39;);"
-                              class="btn btn-outline-inverse btn-sm">read more</a></p>
-
-                        <div class="content-to-populate-in-modal" id="modal-content-4">
-                            <h1>Maecenas id dolor</h1>
-
-                            <p><img data-img-src="assets/images/other_images/transp-image7.png"
-                                    class="rounded_border hover_effect pull-left" alt="Lorem Ipsum"
-                                    src="./index_files/transp-image7.png">Etiam at ligula sit amet arcu laoreet
-                                consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec. <a
-                                        href="http://stephenmuscat.com/twilli_air/1.1/#">Suspendisse molestie lorem
-                                    odio</a>, sit amet. </p>
-
-                            <p>Laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec.
-                                Suspendisse molestie lorem odio, sit amet.</p>
-
-                            <p>Suspendisse molestie lorem odio, sit amet. Duis dictum lorem metus, vitae dapibus risus
-                                imperdiet nec. Suspendisse molestie lorem odio test.</p>
-                        </div>
-                        &lt;!&ndash; #modal-content-4 &ndash;&gt;
-                    </div>
-                </div>
-                &lt;!&ndash; .item &ndash;&gt;
-
-                <div class="item active" style="">
-                    <div class="carousel-text-content" style="height: 100%;">
-                        <img src="./index_files/transp-image4.png" class="icon" alt="Lorem Ipsum">
-
-                        <h2 class="title">Sed scelerisque</h2>
-
-                        <p>Aenean a est fringilla, malesuada eros vel, condimentum augue. Sed lorem sapien, vestibulum
-                            quis nisl volutpat, fermentum adipiscing massa. Cras ac faucibus nisl. Proin ac convallis
-                            sapien. </p>
-
-                        <p><a href="" onclick="populate_and_open_modal(event, &#39;modal-content-5&#39;);"
-                              class="btn btn-outline-inverse btn-sm">read more</a></p>
-
-                        <div class="content-to-populate-in-modal" id="modal-content-5">
-                            <h1>Sed scelerisque</h1>
-
-                            <p><img data-img-src="assets/images/other_images/transp-image4.png"
-                                    class="rounded_border hover_effect pull-left" alt="Lorem Ipsum"
-                                    src="./index_files/transp-image4.png">Etiam at ligula sit amet arcu laoreet
-                                consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec. <a
-                                        href="http://stephenmuscat.com/twilli_air/1.1/#">Suspendisse molestie lorem
-                                    odio</a>, sit amet. </p>
-
-                            <p>Laoreet consequat. Duis dictum lorem metus, vitae dapibus risus imperdiet nec.
-                                Suspendisse molestie lorem odio, sit amet.</p>
-
-                            <p>Suspendisse molestie lorem odio, sit amet. Duis dictum lorem metus, vitae dapibus risus
-                                imperdiet nec. Suspendisse molestie lorem odio test.</p>
-                        </div>
-                        &lt;!&ndash; #modal-content-5 &ndash;&gt;
-                    </div>
-                </div>
-                &lt;!&ndash; .item &ndash;&gt;
-
-            </div>
-            &lt;!&ndash; .carousel-inner &ndash;&gt;
-
-            &lt;!&ndash; Controls &ndash;&gt;
-            <a class="left carousel-control" href="http://stephenmuscat.com/twilli_air/1.1/#features-carousel"
-               data-slide="prev"></a>
-            <a class="right carousel-control" href="http://stephenmuscat.com/twilli_air/1.1/#features-carousel"
-               data-slide="next"></a>
-
-        </div>
-        &lt;!&ndash; #about-carousel &ndash;&gt;
-
-    </div>
-    &lt;!&ndash; .content-wrapper &ndash;&gt;
-</article>-->
-<!-- .section-wrapper -->
-
-<article id="grid" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg2.jpg">
+<article id="comment" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg2.jpg">
     <div class="content-wrapper clearfix" style="position: absolute;">
         <div class="col-sm-11 col-md-10 pull-right">
 
@@ -454,40 +273,18 @@
     </div>
     <!-- .content-wrapper -->
 </article>
-<article id="grid2" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg2.jpg">
+<article id="hot" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg6.jpg">
     <div class="content-wrapper clearfix" style="position: absolute;">
         <div class="col-sm-11 col-md-10 pull-right">
 
-            <h1 class="section-title">所有专辑</h1>
+            <h1 class="section-title">热门歌曲</h1>
 
             <!-- grid -->
             <section class="grid row clearfix clearfix-for-2cols">
 
                 <!-- grid item -->
-                <div class="grid-item col-md-12" ng-repeat="ablum in ablums">
-                    <div class="row">
-                        <div class="col-sm-2"><img ng-src="{{ablum.albumPicSrc}}"></div>
-                        <div class="col-sm-10">
-                            <div class="row">
-                                <h5>专辑名称：{{ablum.albumName}}</h5>
-                            </div>
-                            <div class="row">
-                                <p>发行公司：{{ablum.albumCompany}}</p>
-                            </div>
-                            <div class="row">
-                                <p>发行时间：{{ablum.publicTime}}</p>
-                            </div>
-                            <div class="row">
-                                <p>专辑类型：{{ablum.albumType}}</p>
-                            </div>
-                            <div class="row">
-                                <p>专辑描述：{{ablum.albumDesc}}</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-
+                <div class="grid-item col-md-6" ng-repeat="hot in info.popMusic">
+                    <p><a ng-href="{{'http://www.xiami.com/' + hot.href}}" target="_blank">{{hot.name}}</a></p>
                 </div >
                 <!-- end: .grid-item -->
 
@@ -549,9 +346,106 @@
     </div>
     <!-- .content-wrapper -->
 </article>
-<!-- .section-wrapper -->
+<article id="album" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg3.jpg">
+    <div class="content-wrapper clearfix" style="position: absolute;">
+        <div class="col-sm-11 col-md-10 pull-right">
 
-<article id="featured" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg3.jpg">
+            <h1 class="section-title">所有专辑</h1>
+
+            <!-- grid -->
+            <section class="grid row clearfix clearfix-for-2cols">
+
+                <!-- grid item -->
+                <div class="grid-item col-md-12" ng-repeat="ablum in ablums">
+                    <div class="row">
+                        <div class="col-sm-2"><img ng-src="{{ablum.albumPicSrc}}"></div>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <h5>专辑名称：{{ablum.albumName}}</h5>
+                            </div>
+                            <div class="row">
+                                <p>发行公司：{{ablum.albumCompany}}</p>
+                            </div>
+                            <div class="row">
+                                <p>发行时间：{{ablum.publicTime}}</p>
+                            </div>
+                            <div class="row">
+                                <p>专辑类型：{{ablum.albumType}}</p>
+                            </div>
+                            <div class="row">
+                                <p>专辑描述：{{ablum.albumDesc}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div >
+                <p style="text-align: right;"><a href=""
+                                                 class="btn btn-outline-inverse btn-sm">上一页</a></p>
+                <p style="text-align: right;"><a href=""
+                                                 class="btn btn-outline-inverse btn-sm">下一页</a></p>
+                <!-- end: .grid-item -->
+
+                <!-- grid item -->
+<!--                <div class="grid-item col-md-6">
+                    <div class="item-content clearfix">
+                        <span class="icon glyphicon glyphicon-record"></span>
+
+                        <div class="text-content">
+                            <h5>Aliquam adipiscing eros non elit</h5>
+
+                            <p>Nullam ac rhoncus sapien, non gravida purus. Alinon elit imperdiet congue. Integer
+                                ultricies sed ligula eget tempus.</p>
+                        </div>
+                    </div>
+                    &lt;!&ndash; end: .item-content &ndash;&gt;
+                </div>
+                <article class="clearfix"></article>
+                &lt;!&ndash; end: .grid-item &ndash;&gt;
+
+                &lt;!&ndash; grid item &ndash;&gt;
+                <div class="grid-item col-md-6">
+                    <div class="item-content clearfix">
+                        <span class="icon glyphicon glyphicon-lock"></span>
+
+                        <div class="text-content">
+                            <h5>Integer ultricies sed ligula</h5>
+
+                            <p>Aliquam adipiscing eros non elit imperdiet congue. Integer ultricies sed ligula ligula
+                                eget.</p>
+                        </div>
+                    </div>
+                    &lt;!&ndash; end: .item-content &ndash;&gt;
+                </div>
+                &lt;!&ndash; end: .grid-item &ndash;&gt;
+
+                &lt;!&ndash; grid item &ndash;&gt;
+                <div class="grid-item col-md-6">
+                    <div class="item-content clearfix">
+                        <span class="icon glyphicon glyphicon-file"></span>
+
+                        <div class="text-content">
+                            <h5>Lorem ipsum dolor sit amet</h5>
+
+                            <p>Nullam ac rhoncus. Aliquam adipiscing eros non elit imperdiet congue. Integer ultricies
+                                sed ligula eget tempus.</p>
+                        </div>
+                    </div>
+                    &lt;!&ndash; end: .item-content &ndash;&gt;
+                </div>-->
+                <article class="clearfix"></article>
+                <!-- end: .grid-item -->
+
+            </section>
+            <!-- end: grid -->
+
+        </div>
+        <!-- .col-sm-11 -->
+    </div>
+    <!-- .content-wrapper -->
+</article>
+<article id="pic" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg4.jpg">
     <div class="content-wrapper clearfix" style="position: absolute;">
         <div class="col-sm-11 pull-right">
 
@@ -578,6 +472,62 @@
 
                     <div class="content-to-populate-in-modal" id="modal-content-6">
                         <h1>{{info.name}}</h1>
+                        <h3>大图功能正在开发中...</h3>
+                        <!-- image slider inside popup -->
+                        <div id="unique-id-for-image-slider" class="owl-carousel popup-image-gallery">
+                            <div>
+                                <img id="bigPic{{$index}}">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- #modal-content-6 -->
+                </article>
+                <p style="text-align: right;"><a href=""
+                                                 class="btn btn-outline-inverse btn-sm">上一页</a></p>
+                <p style="text-align: right;"><a href=""
+                                                 class="btn btn-outline-inverse btn-sm">下一页</a></p>
+            </section>
+            <!-- end: .feature-columns -->
+
+            <!-- End: Section content to edit -->
+
+        </div>
+        <!-- .col-sm-10 -->
+    </div>
+    <!-- .content-wrapper -->
+</article>
+<article id="similar" class="section-wrapper clearfix" data-custom-background-img="assets/images/other_images/bg5.jpg">
+    <div class="content-wrapper clearfix" style="position: absolute;">
+        <div class="col-sm-11 pull-right">
+
+            <h1 class="section-title">相似艺人</h1>
+
+            <!-- feature columns -->
+            <section class="feature-columns row clearfix">
+
+                <!-- feature 1 -->
+                <article class="feature-col col-md-4"  ng-repeat="pic in similarArtist">
+                    <a href="" onclick="populate_and_open_modal(event, &#39;modal-content-7&#39;);" ng-click="getBigPic(pic.bigPircHref, $index)"
+                       class="thumbnail linked">
+                        <div class="image-container">
+                            <img data-img-src="assets/images/other_images/project-3.jpg" class="item-thumbnail img-responsive"
+                                 alt="Lorem Ipsum" ng-src="{{pic.img}}" style="height: 254px !important; width: 254px!important;">
+                        </div>
+                        <div class="caption">
+                            <h5 style="">{{pic.name}}</h5>
+                            <!--<p>This feature contains an image carousel when you open popup.</p>-->
+                        </div>
+<!--                        <div class="caption">
+                            <h5>Image Carousel</h5>
+
+                            <p>This feature contains an image carousel when you open popup.</p>
+                        </div>-->
+                        <!-- .caption -->
+                    </a><!-- .thumbnail -->
+
+                    <div class="content-to-populate-in-modal" id="modal-content-7">
+                        <h1>{{pic.name}}</h1>
+                        <h3>艺人详情功能正在开发中...</h3>
                         <!-- image slider inside popup -->
                         <div id="unique-id-for-image-slider" class="owl-carousel popup-image-gallery">
                             <div>
@@ -598,73 +548,10 @@
     </div>
     <!-- .content-wrapper -->
 </article>
-<!-- .section-wrapper -->
-
-<!--<article id="contact" class="section-wrapper clearfix active"
-         data-custom-background-img="assets/images/other_images/bg4.jpg">
-    <div class="content-wrapper clearfix" style="position: absolute;">
-
-        <h1 class="section-title">Contact</h1>
-
-        &lt;!&ndash; CONTACT DETAILS &ndash;&gt;
-        <div class="contact-details col-sm-5 col-md-3">
-            <p>123A,<br>Molestie Lorem Avenue,<br>Aliquam<br>AAA0010</p>
-
-            <p>Tel: (+20) 21 301 524</p>
-
-            <p><a href="mailto:info@loremipsum.com">info@loremipsum.com</a></p>
-        </div>
-        &lt;!&ndash; END: CONTACT DETAILS &ndash;&gt;
-
-        &lt;!&ndash; CONTACT FORM &ndash;&gt;
-        <div class="col-sm-7 col-md-9">
-            &lt;!&ndash; IMPORTANT: change the email address at the top of the assets/php/mail.php file to the email address that you want this form to send to &ndash;&gt;
-            <form class="form-style validate-form clearfix"
-                  action="http://stephenmuscat.com/twilli_air/1.1/assets/php/mail.php" method="POST" role="form">
-
-                &lt;!&ndash; form left col &ndash;&gt;
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="text-field form-control validate-field required"
-                               data-validation-type="string" id="form-name" placeholder="Full Name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="text-field form-control validate-field required"
-                               data-validation-type="email" id="form-email" placeholder="Email Address" name="email">
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" class="text-field form-control validate-field phone"
-                               data-validation-type="phone" id="form-contact-number" placeholder="Contact Number"
-                               name="contact_number">
-                    </div>
-                </div>
-                &lt;!&ndash; end: form left col &ndash;&gt;
-
-                &lt;!&ndash; form right col &ndash;&gt;
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <textarea placeholder="Message..." class="form-control validate-field required"
-                                  name="message"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <img src="./index_files/loader-form.GIF" class="form-loader">
-                        <button type="submit" class="btn btn-sm btn-outline-inverse">Submit</button>
-                    </div>
-                    <div class="form-group form-general-error-container"></div>
-                </div>
-                &lt;!&ndash; end: form right col &ndash;&gt;
-
-            </form>
-        </div>
-        &lt;!&ndash; end: CONTACT FORM &ndash;&gt;
-
-    </div>
-    &lt;!&ndash; .content-wrapper &ndash;&gt;
-</article>-->
-<!-- .section-wrapper -->
-
 </section>
 <!-- #main-content -->
+
+
 
 <!-- Footer -->
 <section id="footer">
@@ -674,16 +561,16 @@
             class="icon glyphicon glyphicon-chevron-up"></span></div>
 
     <ul class="social-icons">
-        <li><a href="http://stephenmuscat.com/twilli_air/1.1/#" target="_blank" title="Facebook"><img
+        <li><a href="" target="_blank" title="Facebook"><img
                 src="./index_files/facebook.png" alt="Facebook"></a></li>
-        <li><a href="http://stephenmuscat.com/twilli_air/1.1/#" target="_blank" title="Twitter"><img
+        <li><a href="" target="_blank" title="Twitter"><img
                 src="./index_files/twitter.png" alt="Twitter"></a></li>
-        <li><a href="http://stephenmuscat.com/twilli_air/1.1/#" target="_blank" title="Google+"><img
+        <li><a href="" target="_blank" title="Google+"><img
                 src="./index_files/googleplus.png" alt="Google+"></a></li>
     </ul>
 
     <!-- copyright text -->
-    <div class="footer-text-line">© 2014 爱虾米</div>
+    <div class="footer-text-line">© 2014 <a title="我的虾米主页" href="http://www.xiami.com/u/12528876" target="_blank">爱虾米</a></div>
 </section>
 <!-- end: Footer -->
 
@@ -706,12 +593,18 @@
     <!-- .modal-dialog -->
 </div>
 <!-- .modal -->
-
+<div class="content-to-populate-in-modal" id="modal-content-0">
+    <img data-img-src="assets/images/other_images/top-image2.jpg" class="lazy full-width" alt="Lorem Ipsum">
+    <h1>爱虾米简介</h1>
+    <p>爱虾米是基于<a href="http://www.xiami.com" target="_blank">虾米网</a>的一个'音乐人'搜索网站,网站所有动态内容都源自于虾米网,
+        虾米网是一个非常棒的音乐网站,大家可以多多去支持! 呵呵!
+    </p>
+    <p></p>
+</div><!-- #modal-content-7 -->
+</div>
 <!-- Javascripts
 ================================================== -->
-<div ng-controller="PicCtrl">
 
-</div>
 
 <!-- Jquery and Bootstrap JS -->
 <script async="" src="./index_files/analytics.js"></script>

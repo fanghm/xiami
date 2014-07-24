@@ -47,6 +47,11 @@ app.controller('MainCtrl', ['$scope', '$resource', '$sce', function ($scope, $re
                 $scope.ablums = result
                 console.log("$scope.ablums", $scope.ablums);
             });
+            var AjaxGetSimilarArtist = $resource('/artist/getSimilarArtist');
+            AjaxGetSimilarArtist.query({}, function(result){
+                $scope.similarArtist = result;
+                console.log("$scope.ablums", $scope.similarArtist);
+            });
         })
     };
     $scope.search('西村由纪江');
