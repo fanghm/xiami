@@ -188,7 +188,7 @@ var obj = {
      * @param
      * @returns 包含列表数组
      */
-    getComment: function (html, uid, page, callback) {
+    getComment: function (uid, page, callback) {
         var r = req.post('http://www.xiami.com/commentlist/turnpage/id/' + uid + '/page/' + page +'/ajax/1', function optionalCallback(err, httpResponse, body) {
             if (err) {
                 return console.error('upload failed:', err);

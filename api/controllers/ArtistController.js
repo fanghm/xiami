@@ -42,7 +42,7 @@ module.exports = {
                     uid: a.uid,             // 艺人的标识id
                     name: a.name,           // 艺人的名字
                     popMusic: a.popMusic,   // 艺人最受欢迎的歌曲
-                    comment: a.comment,     // 用户对此艺人的评论
+                    comment: a.comment[1],     // 用户对此艺人的评论
                     account: a.account,     // 艺人的粉丝数等
                     avatar: a.avatar        // 艺人的头像
                 };
@@ -65,23 +65,26 @@ module.exports = {
                             obj.account = account;
                             service.getPopMusic(info.msg, function (popMusic) {
                                 obj.popMusic = popMusic;
-                                service.getComment(info.msg, info.uid, 1, function (comment) {
-                                    obj.comment = comment;
+                                service.getComment(info.uid, 1, function (comment) {
+                                    obj.comment = {};
+                                    obj.comment[1] = comment;
                                     obj.uid = info.uid;
                                     obj.name = name;
                                     obj.avatar = info.avatar;
 //                            console.log("obj", obj);
 
                                     Artist.create(obj, function(err, result){
+                                        obj.comment = [];
+                                        obj.comment = comment;
                                         return res.json(obj);
                                     });
                                 });
                             });
                         });
                     } else if (info.code == 404){
-                        return res.json(404, {msg: '您要找的是不是:' + info.msg})
+                        return res.json(404, {code: 404, msg: '您要找的是不是:' + info.msg, name: info.msg})
                     } else if (info.code == 405) {
-                        return res.json(404, {msg: info.msg})
+                        return res.json(404, {code: 405, msg: info.msg})
                     }
                 });
             }
@@ -198,7 +201,58 @@ module.exports = {
 
     },
 
-    getAlbum: function (req, res) {
+    getComment: function (req, res) {
+        if (!req.session.user) {
+            return res.send(500);
+        }
+        var page = req.query.page || 1;
+        var uid = req.session.user.uid;
+        console.log("uid, page", uid, page);
+
+        Artist.findByUid(uid).done(function(err, result){
+            if (err) {
+                console.log("getComment:数据库查询出错");
+                return res.send(500);
+            } else {
+                var a = result[0];
+                if (a.comment&& a.comment[page]) { // 数据库有存档
+                    console.log("直接从数据库中获取艺人评论");
+                    res.json(a.comment[page]);
+                } else {                           // 数据库中没有直接去爬
+                    service.getComment(uid, page, function (info) {
+                        console.log("info", info);
+                        console.log("爬来的评论");
+                        if (info) {
+                            Artist.findByUid(uid).done(function(err1, comment){
+                                if (err1) {
+                                    console.log("getComment:数据库查询2出错");
+                                    return res.send(500);
+                                } else {
+//                                    console.log("artist", artist);
+                                    var b = comment[0];
+                                    if (!b.comment) {
+                                        b.comment = {};
+                                    }
+                                    b.comment[page] = info;
+                                    b.save(function(err2, result){
+                                        if (err2) {
+                                            console.log("getComment:数据库更新出错");
+                                            return res.send(500);
+                                        } else {
+                                            res.json(info);
+                                        }
+                                    });
+                                }
+                            });
+                        } else {
+                            console.log("info.msg", info);
+                            return res.send(500);
+                        }
+                    });
+                }
+            }
+        });
+    },  getAlbum: function (req, res) {
         if (!req.session.user) {
             return res.send(500);
         }

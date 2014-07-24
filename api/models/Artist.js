@@ -34,7 +34,7 @@ module.exports = {
             type: 'ARRAY'
         },
         comment : {
-            type: 'ARRAY'
+            type: 'JSON'
         },
         picture : {
             type: 'JSON'
