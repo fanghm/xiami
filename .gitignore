@@ -10,6 +10,7 @@
 ########################
 # node.js / npm
 ########################
+node_modules
 lib-cov
 *.seed
 *.log
@@ -37,6 +38,6 @@ npm-debug.log
 .netbeans
 nbproject
 .idea
-
+nohup.out
 
 
