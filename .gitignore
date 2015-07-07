@@ -39,5 +39,6 @@ npm-debug.log
 nbproject
 .idea
 nohup.out
+*.swp
 
 
