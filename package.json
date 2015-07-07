@@ -1,39 +1,41 @@
 {
-    "name": "xiami",
-    "private": true,
-    "version": "0.0.0",
-    "description": "a Sails application",
-    "dependencies": {
-        "sails": "0.9.16",
-        "grunt": "0.4.1",
-        "sails-disk": "~0.9.0",
-        "ejs": "0.8.4",
-        "optimist": "0.3.4",
-        "request":"*",
-        "cheerio":"*",
-        "async": "*",
-        "sails-mongo": "~0.9.7",
-        "node-uuid":"*",
-        "gulp": "*",
-        "gulp-livereload":"*"
-    },
-    "scripts": {
-        "start": "node xiami.js",
-        "test": "./node_modules/.bin/mocha --reporter spec"
-    },
-    "devDependencies": {
-        "mocha": "latest",
-        "should": "latest",
-        "node-uuid":"*",
-        "gulp": "*",
-        "gulp-livereload":"*",
-        "async":"*",
-        "clone":"*",
-        "supervisor":"*",
-        "shelljs":"*"
-    },
-    "main": "xiami.js",
-    "repository": "",
-    "author": "",
-    "license": ""
+  "name": "xiami",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "dependencies": {
+    "async": "*",
+    "bson": "^0.4.7",
+    "cheerio": "*",
+    "ejs": "0.8.4",
+    "grunt": "0.4.1",
+    "gulp": "*",
+    "gulp-livereload": "*",
+    "mongoose": "^4.0.6",
+    "node-uuid": "*",
+    "optimist": "0.3.4",
+    "request": "*",
+    "sails": "0.9.16",
+    "sails-disk": "~0.9.0",
+    "sails-mongo": "~0.9.7"
+  },
+  "scripts": {
+    "start": "node xiami.js",
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "should": "latest",
+    "node-uuid": "*",
+    "gulp": "*",
+    "gulp-livereload": "*",
+    "async": "*",
+    "clone": "*",
+    "supervisor": "*",
+    "shelljs": "*"
+  },
+  "main": "xiami.js",
+  "repository": "",
+  "author": "",
+  "license": ""
 }
